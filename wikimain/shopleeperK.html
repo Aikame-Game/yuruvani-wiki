@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ショップ開設メニュープラグイン 仕様書</title>
+    <title>ショップ開設メニュープラグイン 使いかた</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -47,7 +47,7 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        ol {
+        ol, ul {
             background: #fff;
             padding: 20px 20px 20px 40px;
             border-radius: 5px;
@@ -68,6 +68,15 @@
         .buy { border-left-color: #3498db; }
         .trade { border-left-color: #9b59b6; }
         
+        .info-box {
+            background: #e8f4fd;
+            border: 1px solid #bbeeeb;
+            border-left: 5px solid #2980b9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
         .error-list {
             background-color: #fdf2f2;
             border: 1px solid #f8b4b4;
@@ -95,8 +104,14 @@
 </head>
 <body>
 
-    <h1>【自作】ショップ開設メニュープラグイン仕様書</h1>
-    <p>このプラグインは、サーバー内で安全かつ簡単に「Shopkeepers」のショップを開設するための、ゆるばにらサーバー専用のGUIメニュープラグインです。従来のコマンド漏れやコストのバグを完全に排除し、安全に取引を行うことができます。</p>
+    <h1>ショップ開設メニュープラグイン使いかた</h1>
+    <p>サーバー内で安全かつ簡単に「Shopkeepers」の看板ショップを開設するための、ゆるばにらサーバーのGUIメニュープラグインです。安全に取引を行うことができます。</p>
+
+    <h2>🛒 通常のショップキーパー（村人型）について</h2>
+    <div class="info-box">
+        <strong>【購入場所】 初期スポーンの2階にある「ゆるばにらショップ」</strong><br>
+        通常の村人タイプ（設置型NPC）のショップキーパーは、初期スポーン2階のショップにて販売されています。用途や好みに合わせて、本プラグインの看板メニューと使い分けてください。
+    </div>
 
     <h2>🚀 基本コマンド</h2>
     <table>
@@ -121,9 +136,9 @@
         </tbody>
     </table>
 
-    <h2>🛠️ ショップの作り方（3ステップ）</h2>
+    <h2>🛠️ 看板ショップの作り方（3ステップ）</h2>
     <ol>
-        <li><strong>チェストを設置し、そのチェストに視線を合わせる</strong><br>ショップの土台となるチェスト（またはトラップチェスト）から<strong>5ブロック以内</strong>の距離で、直接チェストを見つめてください。</li>
+        <li><strong>チェストを設置し、そのチェストに視線を合わせる（画面の十字を合わせる）</strong><br>ショップの土台となるチェスト（またはトラップチェスト）から<strong>5ブロック以内</strong>の距離で、直接チェストを見つめてください。</li>
         <li><strong>メニューを開く</strong><br>チャット欄で <code>/sm</code> を実行し、専用のGUI画面を開きます。</li>
         <li><strong>作成したいショップの種類を選ぶ</strong><br>メニュー内のチェストをクリックします。条件を満たしていれば、その場に即座にショップが作成されます。</li>
     </ol>
@@ -145,6 +160,12 @@
         <h3>🟪 3. 取引ショップを開店 (Trading Shop) <span class="badge">コスト: 💎 ダイヤ2個</span></h3>
         <p>物物交換（アイテムとアイテムの直接トレード）を行うためのショップを作成します。</p>
     </div>
+
+    <h2>💡 開店したショップの設定方法</h2>
+    <ul>
+        <li><strong>ショップメニューを開く（オーナー専用）</strong><br>設置したショップの看板（または村人）を<strong>「スニーク（しゃがみ）＋右クリック」</strong>すると、商品の設定メニューが開きます。</li>
+        <li><strong>チェストへ商品を補充する</strong><br>土台になっているチェストの中に、販売したい商品や、買い取り用の通貨をあらかじめ入れておいてください。</li>
+    </ul>
 
     <h2>⚠️ 注意事項（エラーメッセージ一覧）</h2>
     <p>条件を満たしていない場合、作成処理は自動で安全にキャンセルされ、ダイヤモンドも消費されません。安心してください！</p>
