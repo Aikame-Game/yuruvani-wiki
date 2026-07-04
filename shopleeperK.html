@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ショップ開設メニュープラグイン 仕様書</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        ol {
+            background: #fff;
+            padding: 20px 20px 20px 40px;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .shop-type {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .sell { border-left-color: #2ecc71; }
+        .buy { border-left-color: #3498db; }
+        .trade { border-left-color: #9b59b6; }
+        
+        .error-list {
+            background-color: #fdf2f2;
+            border: 1px solid #f8b4b4;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .error-item {
+            margin-bottom: 10px;
+        }
+        .error-title {
+            color: #c81e1e;
+            font-weight: bold;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #7f8c8d;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>【自作】ショップ開設メニュープラグイン仕様書</h1>
+    <p>このプラグインは、サーバー内で安全かつ簡単に「Shopkeepers」のショップを開設するための、ゆるばにらサーバー専用のGUIメニュープラグインです。従来のコマンド漏れやコストのバグを完全に排除し、安全に取引を行うことができます。</p>
+
+    <h2>🚀 基本コマンド</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>コマンド</th>
+                <th>実行権限</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/sm</code></td>
+                <td>全プレイヤー</td>
+                <td>ショップ開店用のGUIメニューを開きます。</td>
+            </tr>
+            <tr>
+                <td><code>/shopmenu</code></td>
+                <td>全プレイヤー</td>
+                <td>同上（エイリアス）</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>🛠️ ショップの作り方（3ステップ）</h2>
+    <ol>
+        <li><strong>チェストを設置し、そのチェストに視線を合わせる</strong><br>ショップの土台となるチェスト（またはトラップチェスト）から<strong>5ブロック以内</strong>の距離で、直接チェストを見つめてください。</li>
+        <li><strong>メニューを開く</strong><br>チャット欄で <code>/sm</code> を実行し、専用のGUI画面を開きます。</li>
+        <li><strong>作成したいショップの種類を選ぶ</strong><br>メニュー内のチェストをクリックします。条件を満たしていれば、その場に即座にショップが作成されます。</li>
+    </ol>
+
+    <h2>📦 ショップメニューの種類と作成コスト</h2>
+    <p>GUIメニュー内のアイテムをクリックして作成します。作成にはインベントリ内に指定された数の<strong>ダイヤモンド</strong>が必要です。</p>
+
+    <div class="shop-type sell">
+        <h3>🟩 1. 販売ショップを開店 (Selling Shop) <span class="badge">コスト: 💎 ダイヤ1個</span></h3>
+        <p>プレイヤーがアイテムを「販売」するための一般的なショップを作成します。</p>
+    </div>
+
+    <div class="shop-type buy">
+        <h3>🟦 2. 購入ショップを開店 (Buying Shop) <span class="badge">コスト: 💎 ダイヤ1個</span></h3>
+        <p>プレイヤーが他のプレイヤーからアイテムを「買い取る」ためのショップを作成します。</p>
+    </div>
+
+    <div class="shop-type trade">
+        <h3>🟪 3. 取引ショップを開店 (Trading Shop) <span class="badge">コスト: 💎 ダイヤ2個</span></h3>
+        <p>物物交換（アイテムとアイテムの直接トレード）を行うためのショップを作成します。</p>
+    </div>
+
+    <h2>⚠️ 注意事項（エラーメッセージ一覧）</h2>
+    <p>条件を満たしていない場合、作成処理は自動で安全にキャンセルされ、ダイヤモンドも消費されません。</p>
+    
+    <div class="error-list">
+        <div class="error-item">
+            <span class="error-title">「[エラー] ダイヤモンドが X 個足りません。」</span><br>
+            インベントリ内に必要な数のダイヤモンドがない場合に表示されます。
+        </div>
+        <hr style="border: 0; border-top: 1px solid #f8b4b4; margin: 10px 0;">
+        <div class="error-item">
+            <span class="error-title">「[エラー] ショップを設置するにはチェストを見ている必要があります。」</span><br>
+            視線の先（5ブロック以内）にチェストがない、または遠すぎる場合に表示されます。
+        </div>
+    </div>
+
+</body>
+</html>
